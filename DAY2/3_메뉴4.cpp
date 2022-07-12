@@ -3,14 +3,26 @@
 #include <vector>
 #include <conio.h> 
 
-class MenuItem
+// 복합객체(PopupMenu)는 개별객체(MenuItem, leaf)
+// 뿐 아니라 복합객체 자신도 보관한다.
+// => 복합객체와 개별객체는 공통의 기반 클래스가 필요 하다.
+
+class BaseMenu
 {
 	std::string title;
-	int id;
 public:
-	MenuItem(const std::string& s, int n) : title(s), id(n) {}
+	BaseMenu(const std::string& s) : title(s) {}
+
+	virtual ~BaseMenu() {} // 기반 클래스의 소멸자는 항상 가상 함수 이어야 한다.
 
 	std::string get_title() const { return title; }
+};
+
+class MenuItem : public BaseMenu
+{
+	int id;
+public:
+	MenuItem(const std::string& s, int n) : BaseMenu(s), id(n) {}
 
 	void command()
 	{
@@ -19,17 +31,14 @@ public:
 	}
 };
 
-class PopupMenu
+class PopupMenu : public BaseMenu
 {
-	std::string title;
-	std::vector<MenuItem*> v;
+	std::vector<BaseMenu*> v;
 public:
-	PopupMenu(const std::string& s) : title(s) {}
+	PopupMenu(const std::string& s) : BaseMenu(s) {}
 
-	void add_menu(MenuItem* p) { v.push_back(p); }
+	void add_menu(BaseMenu* p) { v.push_back(p); }
 
-
-	// 팝업메뉴를 선택할때 해야 할일을 생각해 보세요
 	void command()
 	{
 		while (1)
@@ -76,7 +85,6 @@ int main()
 	MenuItem m2("소고기김밥", 12);
 
 	PopupMenu kimbam("김밥류");
-
 	kimbam.add_menu(&m1);
 	kimbam.add_menu(&m2);
 
