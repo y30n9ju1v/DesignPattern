@@ -34,6 +34,6 @@
 //				=> C++ idioms, java idioms
 
 
-// 가상 함수 < 일반 함수 < 인라인 치환
+// 속도 : 가상 함수 < 일반 함수 < 인라인 치환
 // strategy vs policy base => 가상 함수 vs 인라인 치환 으로 생각 하세요
 
