@@ -17,16 +17,16 @@ public:
 		{
 			char c = _getch();
 
-			if (c == 13) break;
+			if (c == 13) break; // enter key 입력  \r:enter, \n:개행
 
-			if (isdigit(c))
+			if (isdigit(c)) // validation(숫자인지 확인)
 			{
 				data.push_back(c);
 				std::cout << c;
 			}
 		}
 		std::cout << std::endl;		
-		return data;
+		return data;  
 	}
 };
 
