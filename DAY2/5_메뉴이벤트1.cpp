@@ -18,18 +18,7 @@ public:
 	virtual void command() = 0;
 };
 
-class MenuItem : public BaseMenu
-{
-	int id;
-public:
-	MenuItem(const std::string& s, int n) : BaseMenu(s), id(n) {}
 
-	void command()
-	{
-		std::cout << get_title() << " 메뉴 선택" << std::endl;
-		_getch();
-	}
-};
 
 class PopupMenu : public BaseMenu
 {
@@ -75,7 +64,20 @@ public:
 		}
 	}
 };
+//=============================================
+// 메뉴 선택 이벤트를 처리하는 방법을 생각해 봅시다. 
+class MenuItem : public BaseMenu
+{
+	int id;
+public:
+	MenuItem(const std::string& s, int n) : BaseMenu(s), id(n) {}
 
+	void command()
+	{
+		std::cout << get_title() << " 메뉴 선택" << std::endl;
+		_getch();
+	}
+};
 
 int main()
 {
