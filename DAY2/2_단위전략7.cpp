@@ -8,8 +8,22 @@ template<typename T>
 class MyAlloc
 {
 public:
+	T* allocate(std::size_t sz)
+	{
+		void* p = malloc(sizeof(T) * sz);
 
+		printf("allocate %d °³, %p\n", sz, p);
+
+		return static_cast<T*>(p);
+	}
+	void deallocate(T* p, std::size_t sz)
+	{
+		printf("deallocate %d °³, %p\n", sz, p);
+		free(p);
+	}
 };
+
+
 
 
 
