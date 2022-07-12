@@ -66,11 +66,14 @@ public:
 };
 //=============================================
 // 방법 2. 변하는 것을 다른 클래스로
+// => "리스너(Listener)"라고 불리는 이벤트 처리기술
+// => java, android 앱, 타이젠(C++) 등에서 널리 사용되는 기술입니다.
+
 
 // 메뉴 이벤트를 처리하고 싶은 클래스는 반드시 아래 인터페이스를 구현해야 한다.
 struct IMenuListener
 {
-	virtual void command() = 0;
+	virtual void command(int id) = 0;
 	virtual ~IMenuListener() {}
 };
 
@@ -88,7 +91,7 @@ public:
 	{
 		// 메뉴가 선택되었음을 "등록된 리스너객체"에게 알려준다.(약속된 함수 호출)
 		if (pListener)
-			pListener->command();
+			pListener->command(id);
 	}
 };
 //======================
@@ -97,8 +100,16 @@ public:
 class Camera : public IMenuListener
 {
 public:
-	void command() override
+	void command(int id) override
 	{
+		// 이방식의 디자인은 대부분 아래와 같은 "거대한 switch ~ case" 가 
+		// 등장합니다. - C++진영이 싫어하는 이유중 하나
+		// 하지만, 구조가 어렵지 않고 간단해서 많은 오픈소스가 사용하기도 합니다.
+		switch (id)
+		{
+		case 11: break;
+		case 12: break;
+		}
 		std::cout << "Camera command" << std::endl;
 		_getch();
 	}
@@ -113,6 +124,8 @@ int main()
 	MenuItem* p2 = new MenuItem("fhd", 12);
 
 	// 각 메뉴에 이벤트를 처리할 객체를 등록합니다.
+	// => 메뉴에 "객체" 를 등록하는 형태의 디자인
+	// => 호출될 함수이름은 인터페이스에 의해 약속됨.
 	p1->setListener(camera);
 	p2->setListener(camera);
 
