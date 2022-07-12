@@ -89,15 +89,24 @@ public:
 	// C++11 부터는 "생성자 상속" 문법 사용
 	using MenuItem::MenuItem; // 이 코드가 위와 동일한 효과
 
-	void doCommand() override { std::cout << "change HD" << std::endl; }
+	void doCommand() override 
+	{ 
+		std::cout << "change HD" << std::endl; 
+		_getch();
+	}
 };
 
 class FHDMenu : public MenuItem
 {
 public:
 	using MenuItem::MenuItem;
-	void doCommand() override { std::cout << "change FHD" << std::endl; }
+	void doCommand() override
+	{
+		std::cout << "change FHD" << std::endl;
+		_getch();
+	}
 };
+
 
 int main()
 {
