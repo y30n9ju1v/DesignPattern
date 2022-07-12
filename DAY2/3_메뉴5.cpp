@@ -69,13 +69,13 @@ public:
 int main()
 {
 	PopupMenu* root = new PopupMenu("root");
-	PopupMenu* pm1 = new PopupMenu("해상도 변경");
-	PopupMenu* pm2 = new PopupMenu("색상 변경");
+	PopupMenu* pm1  = new PopupMenu("해상도 변경");
+	PopupMenu* pm2  = new PopupMenu("색상 변경");
 
 	root->add_menu(pm1);
 	root->add_menu(pm2);
 
-	pm1->add_menu(new MenuItem("HD", 11));
+	pm1->add_menu(new MenuItem("HD",  11));
 	pm1->add_menu(new MenuItem("FHD", 12));
 	pm1->add_menu(new MenuItem("UHD", 13));
 
@@ -84,7 +84,7 @@ int main()
 	pm2->add_menu(new MenuItem("BLUE",  23));
 
 	// 이제 시작하려면 ?
-	// ??
+	root->command(); // 최상위 메뉴를 선택
 
 }
 
