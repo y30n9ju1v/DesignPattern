@@ -33,6 +33,8 @@
 // Idioms : 각 언어의 특징을 맞게 사용되는 디자인 기법
 //				=> C++ idioms, java idioms
 
+// 구글에서 "C++ IDioms" 검색 해보세요.. => 1번째 링크 선택
+
 
 // 속도 : 가상 함수 < 일반 함수 < 인라인 치환
 // strategy vs policy base => 가상 함수 vs 인라인 치환 으로 생각 하세요
