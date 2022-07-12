@@ -66,6 +66,9 @@ public:
 };
 //=============================================
 // 방법 1. 변하는 것을 가상함수로...
+// => 가능한 방법이지만.. 
+// => 메뉴예제에 적용하면 파생클래스의 갯수가 너무 많아진다.
+// => 메뉴가 50개라면 "MenuItem"의 파생 클래스도 50개 필요
 
 class MenuItem : public BaseMenu
 {
@@ -95,7 +98,6 @@ public:
 		_getch();
 	}
 };
-
 class FHDMenu : public MenuItem
 {
 public:
@@ -106,8 +108,6 @@ public:
 		_getch();
 	}
 };
-
-
 int main()
 {
 	PopupMenu* root = new PopupMenu("root");
