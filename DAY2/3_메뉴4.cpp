@@ -16,7 +16,14 @@ public:
 	virtual ~BaseMenu() {} // 기반 클래스의 소멸자는 항상 가상 함수 이어야 한다.
 
 	std::string get_title() const { return title; }
+
+	// 모든 메뉴는 선택 될수 있다...
+	// 구현은 파생 클래스가 반드시 하도록...
+	virtual void command() = 0;
 };
+
+
+
 
 class MenuItem : public BaseMenu
 {
