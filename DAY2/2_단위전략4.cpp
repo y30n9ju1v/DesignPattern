@@ -49,8 +49,6 @@ List<int, mutex_locker> st2;
 
 int main()
 {
-	mutex_locker m;
-	st.setSync(&m); // 동기화 정책 전달
 	st.push_front(10);
 }
 
