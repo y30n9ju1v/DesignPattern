@@ -45,10 +45,24 @@ public:
 		return data;
 	}
 };
+// 이제 다양한 validation 정책을 담은 정책 클래스를 제공하면 됩니다.
+class LimitDigitValidator : public IValidator
+{
+	int limit;
+public:
+	LimitDigitValidator(int n) : limit(n) {}
 
+	bool validate(const std::string& s, char c) override
+	{
+		return s.size() < limit && isdigit(c);
+	}
+};
 int main()
 {
 	Edit e;
+	LimitDigitValidator v(5);
+	e.setValidator(&v);  // edit 에 validation 정책 연결
+
 	while (1)
 	{
 		std::cout << e.getData() << std::endl;
