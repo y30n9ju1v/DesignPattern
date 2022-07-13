@@ -84,7 +84,7 @@ public:
 			v.push_back(h); 
 	}
 	// 생성자 인자로도 핸들러 등록가능하고 아래 함수를 호출해도 등록가능
-	void add_handler(HANDELR f) { v.push_back(f); }
+	void add_handler(HANDLER f) { v.push_back(f); }
 
 	void command()
 	{
@@ -94,17 +94,29 @@ public:
 			f(); 		
 	}
 };
+//------------------
+void f0()       { std::cout << "f0" << std::endl; }
+void f1(int id) { std::cout << "f1 : " << id << std::endl; }
 
-
-
-
-
+class Dialog
+{
+public:
+	void close() { std::cout << "dialog close" << std::endl; }
+};
+//--------------------------------------------------------
 int main()
 {
 	PopupMenu* root = new PopupMenu("root");
 
-	root->add_menu(new MenuItem("HD", 11));
-	root->add_menu(new MenuItem("FHD", 12));
+	root->add_menu(new MenuItem("HD", 11, &f0));
+	root->add_menu(new MenuItem("FHD", 12, std::bind(&f1, 12)));
+	root->add_menu(new MenuItem("UHD", 13, std::bind(&f1, 13)));
+
+	Dialog dlg;
+	root->add_menu(new MenuItem("8K", 14, 
+							std::bind(&Dialog::close, &dlg)));
+
+
 
 	root->command();
 
