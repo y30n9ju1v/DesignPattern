@@ -14,7 +14,7 @@ public:
 
 	void AddRef() { ++ref_cnt; }
 
-	void Release() { if (--ret_cnt == 0) delete this; }
+	void Release() { if (--ref_cnt == 0) delete this; }
 
 	~CalcProxy() { std::cout << "~CalcProxy" << std::endl; }
 
