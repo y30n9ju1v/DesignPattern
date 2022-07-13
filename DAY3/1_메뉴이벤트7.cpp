@@ -95,13 +95,13 @@ public:
 	}
 };
 //------------------
-void f0()       { std::cout << "f0" << std::endl; }
-void f1(int id) { std::cout << "f1 : " << id << std::endl; }
+void f0() { std::cout << "f0" << std::endl; _getch(); }
+void f1(int id) { std::cout << "f1 : " << id << std::endl; _getch();}
 
 class Dialog
 {
 public:
-	void close() { std::cout << "dialog close" << std::endl; }
+	void close() { std::cout << "dialog close" << std::endl; _getch();	}
 };
 //--------------------------------------------------------
 int main()
