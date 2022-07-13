@@ -25,3 +25,20 @@ ICalc* CreateProxy()
 	return new CalcProxy;
 }
 
+// 빌드하는 법
+// 1. visual studio 의 C/C++ 컴파일러의 이름은 cl.exe 입니다.
+// 2. 시작 버튼을 누르고 "visual studio 폴더"를 찾으세요..
+//    => 개발자 명령 프롬프트(Develop Command prompt) 를 실행하세요
+// 3. 실행되는 창에서 cl 이라고 입력후 enter 해보세요
+
+// 4. 현재 소스가 있는 폴더로 이동 하세요.
+// 드라이브 이동 : D: 하고 enter
+// 폴더이동     : cd \   루트로
+//			    cd 원하는 폴더
+
+// cl CalcProxy.cpp /LD /link user32.lib kernel32.lib gdi32.lib
+
+// /LD   : DLL로 빌드해달라.
+// /link : 해당 라이브러리와 링크해달라(IPC를 위해 윈도우즈API 사용)
+
+
