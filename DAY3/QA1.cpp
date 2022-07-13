@@ -8,7 +8,14 @@
 using namespace std;
 
 
-template<typename T> class stack1 : public std::list<T>
+// private 상속 : 기반 클래스의 모든 멤버를 물려 받을때 private영역에 놓겠다는것
+//				내부적으로만 사용하고, 외부 노출 하지 않겠다.
+
+// 그런데, stack 의 경우는 "포함"이 좋습니다.
+// 단, private 상속은 "list 가 가진 가상함수가 있다면 override" 할수 있는
+// 기회를 가지게 됩니다.
+
+template<typename T> class stack1 : private std::list<T>
 {
 public:
 	void push(const T& a) { std::list<T>::push_back(a); }
@@ -30,8 +37,8 @@ int main()
 	stack1<int> s1;
 	stack2<int> s2;
 
-	s1.push_front(10);
-	s2.push_front(10);
+	s1.push_front(10); // error. private 상속을 받았으므로 private 멤버
+	s2.push_front(10); // error. stack2에 push_front 함수는 없다.
 }
 
 
