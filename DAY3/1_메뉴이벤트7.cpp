@@ -116,6 +116,14 @@ int main()
 	root->add_menu(new MenuItem("8K", 14, 
 							std::bind(&Dialog::close, &dlg)));
 
+	MenuItem* p = new MenuItem("16K", 15,
+		[]() { std::cout << "lambda" << std::endl; _getch(); });
+
+	root->add_menu(p);
+
+	// 하나의 메뉴 아이템에 여러개 핸들러 등록 가능 ( vector<HANDLER> 로 만든 이유)
+	p->add_handler(&f0);
+	p->add_handler(std::bind(&f1, 15));
 
 
 	root->command();
@@ -123,6 +131,8 @@ int main()
 	delete root;
 }
 
+// effective C++ 격언 : bind 보다 람다표현식을 선호해라
+//               "기존의 함수를 인자를 고정해서 사용하기 보다, 람다표현식으로 만들라는것"
 
 
 
