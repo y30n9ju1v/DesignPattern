@@ -45,13 +45,24 @@ public:
 // 어답터 패턴의 종류
 // 클래스 어답터 : 
 // 객체   어답터 : 
-
+// 아래 코드가 "클래스 어답터" 입니다.
 class Text : public Shape, public TextView
 {
 public:
 	Text(const std::string& s) : TextView(s) {}
 
 	void Draw() override { TextView::Show(); };
+};
+
+// 아래 코드가 "객체 어답터" 입니다.
+
+class ShapeAdapter : public Shape
+{
+	TextView* txtView; // 핵심(포인터, 또는 참조)
+public:
+	ShapeAdapter(TextView* v) : txtView(v) {}
+
+	void Draw() { txtView->Show(); }
 };
 
 int main()
@@ -62,9 +73,12 @@ int main()
 							// tv       : 객체
 
 	// 이미 존재하던 tv를 도형편집기에 넣을수 있을까요 ?
-	v.push_back(&tv); // ??
+//	v.push_back(&tv); // error. tv 는 TextView 타입인데..
+						//		Shape로 부터 상속받지 않았다.
  
-
+	v.push_back( new ShapeAdapter(&tv) ); // 이미 존재하는 객체를
+										// 어답터로 쓰워서 연결
+										// "젠더(돼지코)" 역활
 
 
 }
