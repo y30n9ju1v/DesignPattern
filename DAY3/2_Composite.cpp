@@ -11,6 +11,7 @@ class Item
 	std::string name;
 public:
 	Item(const std::string& n) : name(n) {}
+	virtual ~Item() {}
 
 	// 파일은 자신만의 크기가 있고
 	// 폴더는 자신만의 크기는 없지만, 크기를 구할수는 있습니다.
@@ -37,7 +38,12 @@ public:
 
 	int get_size() const override
 	{
-		// 구현해 보세요 - 핵심!!
+		int sz = 0;
+
+		for (auto p : v)
+			sz += p->get_size();
+
+		return sz;
 	}
 };
 
@@ -45,25 +51,27 @@ public:
 //								   addItem => add_item)
 // Item 에 가상소멸자 추가해 주세요 "virtual ~Item(){}"
 
+
+
 int main()
 {
 	Folder* root = new Folder("ROOT");
 	Folder* fo1  = new Folder("A");
 	Folder* fo2  = new Folder("B");
 	
-	root->addItem(fo1);
-	root->addItem(fo2);
+	root->add_item(fo1);
+	root->add_item(fo2);
 
 	File* f1 = new File("a.txt", 10);
 	File* f2 = new File("b.txt", 20);
 
-	fo1->addItem(f1);
-	root->addItem(f2);
+	fo1->add_item(f1);
+	root->add_item(f2);
 
 	// 파일은 자신만의 크기는 있습니다.
 	// 폴더는 자신만의 크기는 없지만 크기를 구할수 있습니다.
-	cout << f2->getSize() << endl; // 20
-	cout << fo1->getSize() << endl; // 10
-	cout << root->getSize() << endl; // 30
+	std::cout << f2->get_size() << std::endl; // 20
+	std::cout << fo1->get_size() << std::endl; // 10
+	std::cout << root->get_size() << std::endl; // 30
 }
 
