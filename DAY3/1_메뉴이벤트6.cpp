@@ -57,7 +57,8 @@ int main()
 	Dialog dlg;
 	f = std::bind(&Dialog::close, &dlg, 0, _1);
 
-	f(5); // dlg.close(0, 5);
+	f(5);	// dlg.close(0, 5);
+			// (객체포인터->*멤버함수)(0, 5);
 }
 
 
