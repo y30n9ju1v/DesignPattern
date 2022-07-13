@@ -46,7 +46,9 @@ int main()
 	// 4. 기존 클래스에 변경없이, 기능을 추가하는 객체를 만들면 어떨까!!
 	// => Decorator
 
-	ZipDecorator zd(&fs);
+	fs.Write("Hello"); // 파일에 그냥쓰기 
+	
+	ZipDecorator zd(&fs); // Stream 객체에 압축 기능 추가
 	zd.Write("Hello");  // 1. Hello 를 압축하고 <= 추가된 기능
 						// 2. fs.Write()로 쓰기
 
@@ -56,3 +58,7 @@ int main()
 
 	// FileStream 뿐아니라 NetworkStream 등 모든 Stream 에 적용가능
 }
+// Decorator			저장소		
+// ZipDecorator			FileStream
+// EncryptDecorator		NetworkStream
+//						PipeStream
