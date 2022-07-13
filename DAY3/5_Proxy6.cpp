@@ -22,7 +22,9 @@ int main()
 	std::cout << pCalc->Add(10, 20) << std::endl;
 	std::cout << pCalc->Sub(10, 20) << std::endl;
 
-	delete pCalc; // 좋은 코드일까요 ?
+//	delete pCalc; // 좋은 코드일까요 ?
+				  // DLL 내부에서 new 를 했으므로 
+				  // delete 도 DLL 내부에서 하는 것이 좋습니다.
 }
 
 
