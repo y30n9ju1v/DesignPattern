@@ -2,6 +2,17 @@
 #include <iostream>
 
 // 싱글톤 : 오직 한개의 객체만 존재하는 것.
+// => 오직 한개의 객체만 존재하고
+// => 어디서든 동일한 방법으로 객체에 접근할수 있다.(Cursor::getInstance())
+
+// 싱글톤 패턴에 대한 좋지 않은 시선 
+// => 결국 전역 변수 이다.!! 전역변수는 좋지 않다.
+
+// 싱글톤을 구현하는 방법은 아주 다양합니다.
+// 아래 처럼 "static 지역변수"로 구현하는 모양 
+// => effective-C++ 의 저자인 "scott-meyer" 가 처음 제안..
+// => "mayer's singleton" 이라고 합니다.
+
 
 class Cursor
 {
@@ -27,7 +38,6 @@ private:
 	Cursor& operator=(const Cursor&) = delete;
 				// 복사 생성자를 삭제 하면 관례적으로 대입연산자도 삭제 합니다.
 
-
 	// 규칙 3. 오직 한개의 객체를 생성해서 반환하는 "static 멤버 함수"
 public:
 	static Cursor& getInstance()
@@ -44,8 +54,9 @@ int main()
 	std::cout << &c1 << std::endl;
 	std::cout << &c2 << std::endl;
 
-	Cursor c3 = c1; // "복사생성자" 호출..
+//	Cursor c3 = c1; // "복사생성자" 호출..
 					// 이렇게 만드는 것도 할수 없게 해야 합니다.
+					// 복사 생성자를 삭제 하면 error.
 
 
 //	Cursor c1, c2;
