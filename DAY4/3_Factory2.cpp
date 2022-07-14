@@ -59,29 +59,35 @@ class ShapeFactory
 	std::map<int, CREATOR> create_map; // {도형번호, 생성함수}
 	
 public:
-
 	void Register(int type, CREATOR f) { create_map[type] = f; }
-
-
 
 
 	Shape* Create(int type)
 	{
 		Shape* p = nullptr;
-		if (type == 1)	p = new Rect;
-		else if (type == 2)	p = new Circle;
+
+		auto ret = create_map.find(type);
+
+		if (ret != create_map.end())
+		{
+			// ret 는 요소의 포인터 이므로 pair 의 포인터입니다.
+			// pair.first 가 key, pair.second 가 value(함수포인터)
+			p = (ret->second)();  
+		}
 		return p;
 	}
 };
-
-
-
-
 
 int main()
 {
 	std::vector<Shape*> v;
 	ShapeFactory& factory = ShapeFactory::getInstance();
+
+	// 이제 공장에 제품(도형)을 등록후에 사용합니다.
+	factory.Register(1, &Rect::Create);
+	factory.Register(2, &Circle::Create);
+
+
 	while (1)
 	{
 		int cmd;
