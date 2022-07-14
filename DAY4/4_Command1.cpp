@@ -84,13 +84,15 @@ public:
 };
 
 
-
+#include <stack>
 
 int main()
 {
 	std::vector<Shape*> v;
 
 	ICommand* pCmd = nullptr;
+
+	std::stack<ICommand*> undo_stack;
 
 	while (1)
 	{
@@ -101,16 +103,40 @@ int main()
 		{
 			pCmd = new AddRectCommand(v);
 			pCmd->Execute();
+
+			undo_stack.push(pCmd);
 		}
 		else if (cmd == 2)
 		{
 			pCmd = new AddCircleCommand(v);
 			pCmd->Execute();
+
+			undo_stack.push(pCmd);
 		}
 		else if (cmd == 9)
 		{
 			pCmd = new DrawCommand(v);
 			pCmd->Execute();
+
+			undo_stack.push(pCmd);
+		}
+		else if (cmd == 0)
+		{
+			if ( !undo_stack.empty() )
+			{
+				pCmd = undo_stack.top();
+
+				undo_stack.pop();
+
+				if (pCmd->CanUndo())
+					pCmd->Undo();
+
+				delete pCmd; // 여기서 delete 하지 말고, 
+							 // redo_stack.push(pCmd) 하면
+							 // redo 도 만들수 있습니다.
+							  
+				
+			}
 		}
 	}
 }
