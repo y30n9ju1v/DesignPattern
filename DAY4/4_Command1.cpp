@@ -38,10 +38,50 @@ class AddRectCommand : public ICommand
 public:
 	AddRectCommand(std::vector<Shape*>& v) : v(v) {} // 이름같아도 됩니다.
 
-	void Execute() {}
+	void Execute() override { v.push_back(new Rect); }
+	bool CanUndo() override { return true; }
+
+	void Undo() override 
+	{
+		Shape* p = v.back(); // 얻어오기만, 제거 안됨
+		v.pop_back();		 // 제거..
+		delete p;
+	}
 };
 
+class AddCircleCommand : public ICommand
+{
+	std::vector<Shape*>& v; 
+public:
+	AddCircleCommand(std::vector<Shape*>& v) : v(v) {}
 
+	void Execute() override { v.push_back(new Circle); }
+	bool CanUndo() override { return true; }
+
+	void Undo() override
+	{
+		Shape* p = v.back(); 
+		v.pop_back();		 
+		delete p;
+	}
+};
+class DrawCommand : public ICommand
+{
+	std::vector<Shape*>& v;
+public:
+	DrawCommand(std::vector<Shape*>& v) : v(v) {}
+
+	void Execute() override 
+	{
+		for (auto p : v) p->draw();
+	}
+	bool CanUndo() override { return true; }
+
+	void Undo() override
+	{
+		system("cls");
+	}
+};
 
 
 
@@ -50,6 +90,8 @@ int main()
 {
 	std::vector<Shape*> v;
 
+	ICommand* pCmd = nullptr;
+
 	while (1)
 	{
 		int cmd;
@@ -57,18 +99,18 @@ int main()
 
 		if (cmd == 1)
 		{
-			v.push_back(new Rect);
+			pCmd = new AddRectCommand(v);
+			pCmd->Execute();
 		}
 		else if (cmd == 2)
 		{
-			v.push_back(new Circle);
+			pCmd = new AddCircleCommand(v);
+			pCmd->Execute();
 		}
 		else if (cmd == 9)
 		{
-			for (int i = 0; i < v.size(); i++)
-			{
-				v[i]->draw();
-			}
+			pCmd = new DrawCommand(v);
+			pCmd->Execute();
 		}
 	}
 }
