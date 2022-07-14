@@ -29,19 +29,19 @@ public:
 		}
 		return image_map[url];
 	}
+//	static int image_count() { return 积己等image按眉肮荐; }
 };
-
 std::map<std::string, Image*> Image::image_map;
-
 
 int main()
 {
 	Image* img1 = Image::Create("www.naver.com/a.png");
 	img1->Draw();
-
 	Image* img2 = Image::Create("www.naver.com/a.png");
 	img2->Draw();
 
+	std::cout << img1 << std::endl;
+	std::cout << img2 << std::endl;
 }
 
 
