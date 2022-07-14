@@ -35,13 +35,10 @@ public:
 	}
 };
 
-
 int main()
 {
 	std::vector<Shape*> v;
-
 	ShapeFactory& factory = ShapeFactory::getInstance();
-
 	while (1)
 	{
 		int cmd;
