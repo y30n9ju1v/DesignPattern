@@ -47,11 +47,12 @@ public:
 		v.pop_back();
 		delete p;
 	}
-	// 객체를 만들기 위한 인터페이스를 제공하고 사용하지만
-	// 어떤 종류의 객체를 만들지는 파생 클래스가 결정한다.
+	// Factory Method 패턴 : 객체를 만들기 위한 인터페이스를 제공하고 사용하지만
+	//					    어떤 종류의 객체를 만들지는 파생 클래스가 결정한다.
+	// template method 와 동일한 모양이지만, 변하는 가상함수가 하는 일이
+	// 알고리즘의 변경이 아닌 "객체의 종류"를 결정한다.
 	virtual Shape* CreateShape() = 0;
 };
-
 
 class AddRectCommand : public AddCommand
 {
