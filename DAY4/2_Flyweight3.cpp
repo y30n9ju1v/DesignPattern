@@ -38,6 +38,10 @@ public:
 			img = new Image(url);
 			image_map[url] = img;
 		}
+		else
+			img = ret->second;  // <== 이부분이 빠졌네요..
+
+
 		// 참고 : C++20 부터는 좋은 멤버 함수가 추가됩니다.(contain)
 //		if ( !image_map.contain(url) ) {}
 
