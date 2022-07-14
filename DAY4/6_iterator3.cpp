@@ -83,9 +83,21 @@ int main()
 	IEnumerator<int>* p = s.getEnumerator();
 
 	std::cout << p->getObject() << std::endl; // 40
-
 	p->moveNext();
-
 	std::cout << p->getObject() << std::endl; // 30
 
+	delete p; // 좋지 않습니다.
+			  // 결국 스마트 포인터 사용해야 합니다.
 }
+// 위 코드가 "C#", "삼성 타이젠(C++)" 이 사용하는 반복자 입니다.
+// java, python, swift 등 대부분 언어도 함수 이름만 다를뿐 구현은 유사 합니다.
+// 
+// 그런데.. 생각해 볼 문제
+// 1. moveNext()등이 인터페이스로 약속되므로 가상함수 입니다.
+//    이동시 오버헤드 있습니다.
+
+// 2. s.getEnumerator() 가 반복자를 "new"로 만들고 있습니다.
+//    delete 해야 하지 않을까요?
+
+// 3. 진짜 배열을 열거하는 방법과 다릅니다.
+//    진짜 배열을 포인터를 사용하므로 ++ 로 이동
