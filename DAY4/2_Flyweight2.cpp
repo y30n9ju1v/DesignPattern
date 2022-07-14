@@ -31,6 +31,9 @@ public:
 	}
 };
 
+std::map<std::string, Image*> Image::image_map;
+
+
 int main()
 {
 	Image* img1 = Image::Create("www.naver.com/a.png");
