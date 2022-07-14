@@ -26,7 +26,6 @@ public:
 
 	Shape* Clone() override { return new Rect(*this); }
 };
-
 class Circle : public Shape
 {
 public:
@@ -36,6 +35,13 @@ public:
 
 	Shape* Clone() override { return new Circle(*this); }
 };
+
+// 복사 생성자를 사용하지 않고 Clone을 사용하는 이유가 혹시 무엇일까요?
+// => 견본 도형이 모두 Rect 라면 "복사 생성자" 로 하면 됩니다.
+// => 그런데, 견본으로 등록된 객체가 다양한 타입 이므로 , 어떤 타입인지 모릅니다.
+// => 그래서 Clone() 사용..  
+
+
 
 class ShapeFactory
 {
