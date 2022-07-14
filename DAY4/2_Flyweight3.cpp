@@ -38,11 +38,16 @@ public:
 			img = new Image(url);
 			image_map[url] = img;
 		}
+		// 참고 : C++20 부터는 좋은 멤버 함수가 추가됩니다.(contain)
+//		if ( !image_map.contain(url) ) {}
 
-		return img;
+		return img; 
 	}
 	//....
 };
+
+
+
 
 int main()
 {
