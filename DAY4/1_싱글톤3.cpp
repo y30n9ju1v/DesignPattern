@@ -7,6 +7,8 @@ private:
 	Cursor(const Cursor&) = delete;
 	Cursor& operator=(const Cursor&) = delete;
 
+
+
 	static Cursor* sInstance;
 public:
 	static Cursor& getInstance()
@@ -15,10 +17,12 @@ public:
 		{
 			sInstance = new Cursor;
 		}
-		return instance;
+		return *sInstance;
 	}
 };
 Cursor* Cursor::sInstance = nullptr;
+
+
 
 
 int main()
