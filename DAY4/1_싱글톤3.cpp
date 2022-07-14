@@ -6,13 +6,21 @@ private:
 	Cursor() {}
 	Cursor(const Cursor&) = delete;
 	Cursor& operator=(const Cursor&) = delete;
+
+	static Cursor* sInstance;
 public:
 	static Cursor& getInstance()
 	{
-		static Cursor instance;
+		if (sInstance == nullptr)
+		{
+			sInstance = new Cursor;
+		}
 		return instance;
 	}
 };
+Cursor* Cursor::sInstance = nullptr;
+
+
 int main()
 {
 	Cursor& c1 = Cursor::getInstance();
