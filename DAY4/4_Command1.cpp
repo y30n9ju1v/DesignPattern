@@ -31,6 +31,16 @@ struct ICommand
 	virtual ~ICommand() {}
 };
 
+// 사각형을 추가하는 명령
+class AddRectCommand : public ICommand
+{
+	std::vector<Shape*>& v; // 참조 입니다.
+public:
+	AddRectCommand(std::vector<Shape*>& v) : v(v) {} // 이름같아도 됩니다.
+
+	void Execute() {}
+};
+
 
 
 
