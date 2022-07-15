@@ -66,6 +66,19 @@ public:
 	}
 };
 
+class LineGraph : public IGraph
+{
+public:
+	void Update(int n) override
+	{
+		std::cout << "Line Graph : ";
+
+		for (int i = 0; i < n; i++)
+			std::cout << "-";
+
+		std::cout << std::endl;
+	}
+};
 
 int main()
 {
@@ -74,6 +87,7 @@ int main()
 	// 그래프 객체를 만들고 Table에 부착
 	PieGraph pg; t.attach(&pg);
 	BarGraph bg; t.attach(&bg);
+	LineGraph lg; t.attach(&lg);
 
 	t.edit(); // Table 편집 모드로 .. 
 }
