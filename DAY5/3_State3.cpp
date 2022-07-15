@@ -27,7 +27,11 @@ int main()
 	p->run();
 	p->attack();
 
-	p = new RedItemCharacter; // 기존 캐릭터가 아이템 획득??
+	p = new RedItemCharacter; // 기존 캐릭터가 아이템 획득아니라..!!
+							// 새로운 캐릭터를 만든 것
+							// 우리에게 필요한 것은
+							// 상태는 유지(기존 객체 사용) 하는데
+							// 동작(멤버 함수)만 교체하고 싶은것
 	p->run();
 	p->attack(); 
 }
