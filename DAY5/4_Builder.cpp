@@ -9,6 +9,8 @@ typedef std::string Uniform;	    // class Uniform{}
 typedef std::string Shoes;			// class Shoes{}
 typedef std::string Character;		// class Character{}라고 가정
 
+// 위 코드에서 "Hat, Shoes .." 등을 하나의 독립된 클래스라고 생각하세요.. 
+
 // 캐릭터를 만드는 클래스
 class Director
 {
