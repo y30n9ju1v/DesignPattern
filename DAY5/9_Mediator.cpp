@@ -21,7 +21,7 @@
 
 
 
-
+// GUI 라이브러리중에 아래 같은 것이 있다고 생각해 봅시다.
 class CheckBox
 {
 	bool state;
@@ -34,20 +34,24 @@ public:
 	virtual void ChangeState() {}
 };
 
-class RadioBox
+class MyCheck : public CheckBox
 {
-	bool state;
 public:
-	RadioBox() : state(false) {}
-	
-	void SetCheck(bool b) { state = b; ChangeState(); }
-	bool GetCheck()       { return state; }
-
-	virtual void ChangeState() {}
+	void ChangeState() override 
+	{
+		// 여기서 버튼 enable 정책을 구현합니다.
+		if (GetCheck())
+			std::cout << "button enable" << std::endl;
+		else 
+			std::cout << "button disable" << std::endl;
+	}
 };
 
 int main()
 {
+	MyCheck c;
+	c.SetCheck(false);  // 사용자가 마우스로 체크를 눌렀다고 가정. 
+	c.SetCheck(true);
 }
 
 
