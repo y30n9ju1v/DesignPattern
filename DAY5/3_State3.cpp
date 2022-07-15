@@ -10,7 +10,7 @@ public:
 	void run() { doRun(); }
 	void attack() { doAttack(); }
 
-	virtual void doRrun() { std::cout << "run" << std::endl; }
+	virtual void doRun()   { std::cout << "run" << std::endl; }
 	virtual void doAttack() { std::cout << "attack" << std::endl; }
 };
 
