@@ -21,8 +21,7 @@ public:
 		Memento* p = new Memento;
 		p->penColor = penColor;
 		p->penWidth = penWidth;
-
-		v.push_back(v);
+		v.push_back(p);
 
 		return v.size(); //몇번째 저장했는가를 token으로
 						 // 이코드 보다는 map<key, Memento*> 가 좋긴합니다.
