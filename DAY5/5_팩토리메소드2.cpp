@@ -65,6 +65,8 @@ public:
 class OSXDialog : public BaseDialog
 {
 public:
+	// IButton* 대신 OSXButton* 으로 재정의해도 됩니다. => 좋습니다.
+	// 이런 기술을 "공변 반환" 의 법칙 이라고 합니다.
 	IButton* CreateButton() override { return new OSXButton; }
 	IEdit* CreateEdit()     override { return new OSXEdit; }
 };
