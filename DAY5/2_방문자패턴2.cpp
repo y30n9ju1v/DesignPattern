@@ -18,6 +18,19 @@ template<typename T> class TwiceVisitor : public IVisitor<T>
 public:
 	void visit(T& v) override { v *= 2; }
 };
+
+template<typename T> class ShowVisitor : public IVisitor<T>
+{
+public:
+	void visit(T& v) override { std::cout << v << std::endl; }
+};
+template<typename T> class ZeroVisitor : public IVisitor<T>
+{
+public:
+	void visit(T& v) override { v = 0; }
+};
+
+
 //=====================================
 // 복합객체는 방문자를 받아 들여야 합니다.
 template<typename T> struct IAccept
@@ -56,8 +69,13 @@ int main()
 	TwiceVisitor<int> tv; 
 	s.Accept(&tv);
 
-//	ShowVisitor<int> sv; 
-//	s.Accept(&sv);
+	ShowVisitor<int> sv; 
+	s.Accept(&sv);
+
+	ZeroVisitor<int> zv; // 요소를 0으로
+	s.Accept(&zv);
+
+	s.Accept(&sv);
 
 }
 
